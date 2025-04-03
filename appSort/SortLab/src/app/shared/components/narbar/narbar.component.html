@@ -1,0 +1,49 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="logo">
+    <img src="https://static.wixstatic.com/media/978237_8660eaec11ba4f338aa6585b70cc77af~mv2.png/v1/fit/w_2500,h_1330,al_c/978237_8660eaec11ba4f338aa6585b70cc77af~mv2.png">
+    <span>SortLab</span>
+  </div>
+
+
+  <div class="sort-buttons">
+    <button mat-button [routerLink]="'/shell-sort'" [ngClass]="{'active': isActive('/shell-sort')}">
+      Shell sort
+    </button>
+    <button mat-button [routerLink]="'/radix-sort'" [ngClass]="{'active': isActive('/radix-sort')}">
+      Radix sort
+    </button>
+    <button mat-button [routerLink]="'/selection-sort'" [ngClass]="{'active': isActive('/selection-sort')}">
+      Selection sort
+    </button>
+    <button mat-button [routerLink]="'/bubble-sort'" [ngClass]="{'active': isActive('/bubble-sort')}">
+      Bubble sort
+    </button>
+    <button mat-button [routerLink]="'/quick-sort'" [ngClass]="{'active': isActive('/quick-sort')}">
+      Quick sort
+    </button>
+    <button mat-button [routerLink]="'/insertion-sort'" [ngClass]="{'active': isActive('/insertion-sort')}">
+      Insertion sort
+    </button>
+
+    <!-- Nút mở menu, hiển thị option đã chọn -->
+    <button mat-button [matMenuTriggerFor]="comparisonMenu" [ngClass]="{'active': isActive(currentRoute)}">
+      {{ selectedOption }} <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <!-- Menu Dropdown -->
+    <mat-menu #comparisonMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/1-process'" (click)="selectOption('One PRC', '/1-process')">
+        One PRC
+      </button>
+      <button mat-menu-item [routerLink]="'/2-process'" (click)="selectOption('Two PRC', '/2-process')">
+        Two PRC
+      </button>
+      <button mat-menu-item [routerLink]="'/6-process'" (click)="selectOption('Six PRC', '/6-process')">
+        Six PRC
+      </button>
+    </mat-menu>
+
+
+  </div>
+</mat-toolbar>
+
