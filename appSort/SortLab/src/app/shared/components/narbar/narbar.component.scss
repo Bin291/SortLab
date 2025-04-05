@@ -1,11 +1,11 @@
 .navbar {
-  //max-width: 100%;
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
   background-color: var(--primary);
+  position: relative;
 }
 
 .logo {
@@ -13,21 +13,26 @@
   align-items: center;
   gap: 10px;
 
-  img{
+  img {
     height: 60px;
     width: 60px;
-
   }
 }
-span{
+
+span {
   font-size: 24px;
   font-weight: bold;
   color: var(--scrim);
 }
 
-.sort-buttons {
+/* Desktop Menu */
+.desktop-menu {
   display: flex;
   gap: 15px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .sort-buttons button {
@@ -36,22 +41,22 @@ span{
   transition: color 0.3s ease-in-out;
 }
 
-.sort-buttons button.active {
-  color: var(--scrim);
-  font-weight: bold;
-}
-
-.sort-buttons button.active::after {
+/* Hover underline effect */
+.sort-buttons button::after {
   content: "";
   position: absolute;
   left: 50%;
   bottom: 0;
-  width: 100%;
+  width: 0;
   height: 2px;
   background-color: var(--scrim);
   transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
 }
 
+.sort-buttons button:hover::after {
+  width: 100%;
+}
 
 button {
   background-color: var(--su--on-primaryrface);
@@ -60,5 +65,105 @@ button {
   padding: 8px 16px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 21px;
+  font-size: 18px;
+  font-family: "Lexend Deca", sans-serif;
 }
+
+/* Menu icon for mobile */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  color: var(--scrim);
+
+  @media (max-width: 768px) {
+    display: block;
+    font-size: 36px;
+  }
+}
+
+/* Mobile Menu styles */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  background-color: var(--primary);
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.mobile-menu a {
+  padding: 12px 20px;
+  color: var(--scrim);
+  text-decoration: none;
+  font-size: 18px;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+/* Container dropdown */
+.mobile-dropdown {
+  position: relative;
+  font-size: 18px;
+  color: var(--scrim);
+  padding: 12px 20px;
+  cursor: pointer;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.dropdown-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Dropdown content */
+.dropdown-options {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary);
+
+  .title-menu{
+    font-family: "Lexend Deca", sans-serif !important;
+
+  }
+}
+
+.dropdown-options.open {
+  max-height: 500px; /* đủ lớn cho nội dung */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Link style */
+.dropdown-options a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: var(--scrim);
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Icon rotate */
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
